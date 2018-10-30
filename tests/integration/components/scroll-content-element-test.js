@@ -1,7 +1,7 @@
 import { Promise } from 'rsvp';
 import {moduleForComponent, test} from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import wait from 'ember-test-helpers/wait';
+import { wait, find } from 'ember-test-helpers';
 
 moduleForComponent('scroll-content-element', 'Integration | Component | scroll content element', {
   integration: true
@@ -136,10 +136,11 @@ function testScrollOccursAndEventTriggersWithDirectionAndOffset(assert, template
 
   flushScrollAndWait().then(() => {
     // WHEN the scrollX position has moved left to 0px
-    this.$(cssSelector)[scrollMethod](firstMovement);
+    find(cssSelector)[scrollMethod] = firstMovement;
+
     flushScrollAndWait().then(() => {
       // and then right to 25px;
-      this.$(cssSelector)[scrollMethod](secondMovement);
+      find(cssSelector)[scrollMethod] = secondMovement;
       flushScrollAndWait().then(() => {
         //THEN scroll gets called accordingly, and a horizontal scroll is detected
         assert.deepEqual(scrolledCallArgs[0], [initialPosition, direction]);

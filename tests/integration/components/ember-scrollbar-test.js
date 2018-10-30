@@ -43,9 +43,8 @@ module('Integration | Component | ember scrollbar', function(hooks) {
 
       </div>
     </div>`);
-
-    assert.equal(this.$(handleClass).position().left, this.get('offset'));
-    assert.equal(Number.parseInt(this.$(handleClass).css('width')), this.get('size'));
+    assert.equal(this.get('element').querySelector(handleClass).offsetLeft, this.get('offset'));
+    assert.equal(Number.parseInt(this.get('element').querySelector(handleClass).style.width), this.get('size'));
   });
 
   test('Vertical: offset and size get routed properly', async function(assert) {
@@ -68,9 +67,8 @@ module('Integration | Component | ember scrollbar', function(hooks) {
 
       </div>
     </div>`);
-
-    assert.equal(this.$(handleClass).position().top, this.get('offset'));
-    assert.equal(Number.parseInt(this.$(handleClass).css('height')), this.get('size'));
+    assert.equal(this.get('element').querySelector(handleClass).offsetTop, this.get('offset'))
+    assert.equal(Number.parseInt(this.get('element').querySelector(handleClass).style.height), this.get('size'))
   });
 
 
