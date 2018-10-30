@@ -1,20 +1,15 @@
 import { computed } from '@ember/object';
 import Service from '@ember/service';
-import $ from 'jquery';
 
 export default Service.extend({
   thickness: computed(() => {
-    const tempEl = $(`
-      <div class="scrollbar-width-tester" style="width: 50px; position: absolute; left: -100px;">
-        <div style="overflow: scroll;">
-          <div class="scrollbar-width-tester__inner"></div>
-        </div>
-      </div>
-    `);
-    $('body').append(tempEl);
-    const width = $(tempEl).width();
-    const widthMinusScrollbars = $('.scrollbar-width-tester__inner', tempEl).width();
-    tempEl.remove();
+    let tempEl = document.createElement('div');
+    tempEl.setAttribute('style', 'width: 50px; position: "absolute"; left: -100px;');
+    tempEl.classList.add('scrollbar-width-tester')
+    tempEl.innerHTML = `<div style="overflow: scroll;"><div class="scrollbar-width-tester__inner"></div></div>`;
+    document.body.appendChild(tempEl);
+    let width = tempEl.offsetWidth
+    let widthMinusScrollbars = tempEl.querySelector('.scrollbar-width-tester__inner').offsetWidth;
 
     return (width - widthMinusScrollbars);
   })

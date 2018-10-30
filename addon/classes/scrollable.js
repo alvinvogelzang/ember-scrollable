@@ -1,4 +1,4 @@
-import { camelize } from '@ember/string';
+import { capitalize } from '@ember/string';
 
 export default class Scrollable {
   constructor(options) {
@@ -12,11 +12,11 @@ export default class Scrollable {
 
 
   scrollbarSize() {
-    return this.scrollbarElement[this.sizeAttr]();
+    return this.scrollbarElement[`client${capitalize(this.sizeAttr)}`];
   }
 
   contentOuterSize() {
-    return this.contentElement[camelize(`outer-${this.sizeAttr}`)]();
+    return this.contentElement[`outer${capitalize(this.sizeAttr)}`];
   }
 
   getHandlePositionAndSize(scrollOffset) {
@@ -68,4 +68,3 @@ export class Horizontal extends Scrollable {
     this.sizeAttr = 'width';
   }
 }
-
