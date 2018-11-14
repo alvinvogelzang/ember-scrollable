@@ -1,4 +1,7 @@
 import { capitalize } from '@ember/string';
+import { getHeight, getWidth } from '../util/measurements';
+
+const DynamicMethods = {getHeight, getWidth};
 
 export default class Scrollable {
   constructor(options) {
@@ -16,7 +19,7 @@ export default class Scrollable {
   }
 
   contentOuterSize() {
-    return this.contentElement[`outer${capitalize(this.sizeAttr)}`];
+    return DynamicMethods[`get${capitalize(this.sizeAttr)}`](this.contentElement);
   }
 
   getHandlePositionAndSize(scrollOffset) {
