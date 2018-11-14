@@ -1,6 +1,5 @@
 import { computed } from '@ember/object';
 import Service from '@ember/service';
-import { getWidth } from '../util/measurements';
 
 export default Service.extend({
   thickness: computed(() => {
@@ -9,8 +8,8 @@ export default Service.extend({
     tempEl.classList.add('scrollbar-width-tester')
     tempEl.innerHTML = `<div style="overflow: scroll;"><div class="scrollbar-width-tester__inner"></div></div>`;
     document.body.appendChild(tempEl);
-    let width = getWidth(tempEl);
-    let widthMinusScrollbars = getWidth(tempEl.querySelector('.scrollbar-width-tester__inner'));
+    let width = tempEl.offsetWidth
+    let widthMinusScrollbars = tempEl.querySelector('.scrollbar-width-tester__inner').offsetWidth;
 
     return (width - widthMinusScrollbars);
   })
