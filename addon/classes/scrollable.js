@@ -1,7 +1,7 @@
 import { capitalize } from '@ember/string';
 import { getHeight, getWidth } from '../util/measurements';
 
-const DynamicMethods = {getHeight, getWidth};
+const DynamicMethods = { getHeight, getWidth };
 
 export default class Scrollable {
   constructor(options) {

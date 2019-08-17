@@ -9,6 +9,7 @@ import InboundActionsMixin from 'ember-component-inbound-actions/inbound-actions
 import DomMixin from 'ember-lifeline/mixins/dom';
 import layout from '../templates/components/ember-scrollable';
 import { Horizontal, Vertical } from '../classes/scrollable';
+import { getHeight, getWidth } from '../util/measurements';
 
 const hideDelay = Ember.testing ? 16 : 1000;
 const PAGE_JUMP_MULTIPLE = 7 / 8;
@@ -227,8 +228,8 @@ export default Component.extend(InboundActionsMixin, DomMixin, {
   },
 
   resizeScrollContent() {
-    const width = this.element.offsetWidth;
-    const height = this.element.offsetHeight;
+    const width = getWidth(this.element);
+    const height = getHeight(this.element);
     const scrollbarThickness = this.get('scrollbarThickness.thickness');
 
     const hasHorizontal = this.get('horizontal');
