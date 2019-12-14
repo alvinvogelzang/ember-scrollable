@@ -7,7 +7,7 @@ moduleForComponent('scroll-content-element', 'Integration | Component | scroll c
   integration: true
 });
 
-const flushScrollAndWait =  function() {
+const flushScrollAndWait = function() {
   return wait().then(() => {
     return new Promise((resolve) => {
       window.requestAnimationFrame(resolve);
@@ -136,7 +136,7 @@ function testScrollOccursAndEventTriggersWithDirectionAndOffset(assert, template
 
   flushScrollAndWait().then(() => {
     // WHEN the scrollX position has moved left to 0px
-     this.$(cssSelector)[scrollMethod](secondMovement);
+     this.$(cssSelector)[scrollMethod](firstMovement);
 
     flushScrollAndWait().then(() => {
       // and then right to 25px;
